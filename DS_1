@@ -1,0 +1,119 @@
+Current configuration : 2057 bytes
+!
+! Last configuration change at 21:18:23 UTC Wed Oct 7 2026
+!
+version 15.2
+service timestamps debug datetime msec
+service timestamps log datetime msec
+no service password-encryption
+service compress-config
+!
+hostname DS_1
+!
+boot-start-marker
+boot-end-marker
+!
+!
+!
+no aaa new-model
+!
+!
+!
+!
+!
+!
+ip dhcp excluded-address 10.10.10.0 10.10.10.10
+ip dhcp excluded-address 10.10.20.0 10.10.20.10
+ip dhcp excluded-address 10.10.30.0 10.10.30.10
+ip dhcp excluded-address 10.10.40.0 10.10.40.10
+!
+ip dhcp pool vlan10
+ network 10.10.10.0 255.255.255.0
+ default-router 10.10.10.1
+ dns-server 8.8.8.8
+!
+ip dhcp pool vlan20
+ network 10.10.20.0 255.255.255.0
+ default-router 10.10.20.1
+ dns-server 8.8.8.8
+!
+ip dhcp pool vlan30
+ network 10.10.30.0 255.255.255.0
+ default-router 10.10.30.1
+ dns-server 8.8.8.8
+!
+ip dhcp pool vlan40
+ network 10.10.40.0 255.255.255.0
+ default-router 10.10.40.1
+ dns-server 8.8.8.8
+!
+!
+ip cef
+no ipv6 cef
+!
+!
+spanning-tree mode pvst
+spanning-tree extend system-id
+!
+!
+interface Ethernet0/0
+!
+interface Ethernet0/1
+!
+interface Ethernet0/2
+ switchport trunk allowed vlan 1,10,20,30,40
+ switchport trunk encapsulation dot1q
+ switchport mode trunk
+!
+interface Ethernet0/3
+ switchport trunk allowed vlan 1,10,20,30,40
+ switchport trunk encapsulation dot1q
+ switchport mode trunk
+!
+interface Ethernet1/0
+ switchport trunk allowed vlan 1,10,20,30,40
+ switchport trunk encapsulation dot1q
+ switchport mode trunk
+!
+interface Ethernet1/1
+!
+interface Ethernet1/2
+!
+interface Ethernet1/3
+!
+interface Vlan10
+ ip address 10.10.10.1 255.255.255.0
+!
+interface Vlan20
+ ip address 10.10.20.1 255.255.255.0
+!
+interface Vlan30
+ ip address 10.10.30.1 255.255.255.0
+!
+interface Vlan40
+ ip address 10.10.40.1 255.255.255.0
+!
+ip forward-protocol nd
+!
+ip http server
+ip http secure-server
+!
+ip ssh server algorithm encryption aes128-ctr aes192-ctr aes256-ctr
+ip ssh client algorithm encryption aes128-ctr aes192-ctr aes256-ctr
+!
+!
+!
+!
+!
+control-plane
+!
+!
+line con 0
+ logging synchronous
+line aux 0
+line vty 0 4
+ login
+!
+!
+!
+end
