@@ -1,0 +1,15 @@
+              External Network
+                     |
+              [Untrust Zone]
+                     |
+             Palo Alto Firewall
+                     |
+               [Trust Zone]
+                     |
+              Core Switching
+                     |
+             Distribution Layer
+                     |
+                Access Layer
+                     |
+                End Devices
